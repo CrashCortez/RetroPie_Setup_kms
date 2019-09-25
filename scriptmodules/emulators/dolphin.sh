@@ -33,8 +33,7 @@ function sources_dolphin() {
 function build_dolphin() {
     mkdir build
     cd build
-    cmake .. -DCMAKE_INSTALL_PREFIX="$md_inst"
-    #make clean
+    cmake .. -DCMAKE_INSTALL_PREFIX="$md_inst" -DCXXFLAGS= “-O2 -march=armv8-a+crc -mtune=cortex-a72 -mfpu=neon-fp-armv8 -mfloat-abi=hard -ftree-vectorize -funsafe-math-optimizations" -DCFLAGS= “-O2 -march=armv8-a+crc -mtune=cortex-a72 -mfpu=neon-fp-armv8 -mfloat-abi=hard -ftree-vectorize -funsafe-math-optimizations”
     make
     md_ret_require="$md_build/build/Binaries/dolphin-emu"
 }
